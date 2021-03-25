@@ -71,10 +71,9 @@ namespace GameProject {
         private void UpdateCameraInput() {
             int scrollDelta = MouseCondition.ScrollDelta;
             if (scrollDelta != 0) {
-                _targetScale =
-                    MathF.Min(MathF.Max(
-                        LogDistanceToScale(ScaleToLogDistance(_targetScale) - scrollDelta * _scrollToLogDistance)
-                    , _minScale), _maxScale);
+                _targetScale = MathHelper.Clamp(
+                    LogDistanceToScale(ScaleToLogDistance(_targetScale) - scrollDelta * _scrollToLogDistance)
+                    , _minScale, _maxScale);
             }
 
             if (RotateLeft.Pressed()) {
