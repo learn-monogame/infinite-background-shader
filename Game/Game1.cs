@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Apos.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -134,7 +134,7 @@ namespace GameProject {
         }
         private Matrix GetUVTransform(Texture2D t, Vector2 offset, float scale, Viewport v) {
             return
-                Matrix.CreateScale(_background.Width, _background.Height, 1f) *
+                Matrix.CreateScale(t.Width, t.Height, 1f) *
                 Matrix.CreateScale(scale, scale, 1f) *
                 Matrix.CreateTranslation(offset.X, offset.Y, 0f) *
                 GetView() *
