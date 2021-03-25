@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Apos.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -47,17 +47,17 @@ namespace GameProject {
         protected override void Draw(GameTime gameTime) {
             GraphicsDevice.Clear(Color.Black);
 
-            float width = GraphicsDevice.Viewport.Width;
-            float height = GraphicsDevice.Viewport.Height;
+            int width = GraphicsDevice.Viewport.Width;
+            int height = GraphicsDevice.Viewport.Height;
 
-            Matrix projection = Matrix.CreateOrthographicOffCenter(-1, 1, 1, -1, 0, 1);
+            Matrix projection = Matrix.CreateOrthographicOffCenter(0, width, height, 0, 0, 1);
             Matrix uv_transform = GetUVTransform(_background, new Vector2(0, 0), 1f, GraphicsDevice.Viewport);
 
             _infinite.Parameters["view_projection"].SetValue(Matrix.Identity * projection);
             _infinite.Parameters["uv_transform"].SetValue(Matrix.Invert(uv_transform));
 
             _s.Begin(effect: _infinite, samplerState: SamplerState.LinearWrap);
-            _s.Draw(_background, new Rectangle(-1, -1, 2, 2), Color.White);
+            _s.Draw(_background, GraphicsDevice.Viewport.Bounds, Color.White);
             _s.End();
 
             base.Draw(gameTime);
@@ -154,7 +154,6 @@ namespace GameProject {
         Texture2D _background;
         Effect _infinite;
 
-        Vector2 _origin;
         Vector2 _xy = new Vector2(0f, 0f);
         float _scale;
         float _rotation = 0f;
