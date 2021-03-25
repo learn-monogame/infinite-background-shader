@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Apos.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -34,11 +34,6 @@ namespace GameProject {
 
             if (_quit.Pressed())
                 Exit();
-
-            var width = GraphicsDevice.Viewport.Width;
-            var height = GraphicsDevice.Viewport.Height;
-
-            _origin = new Vector2(width / 2f, height / 2f);
 
             UpdateCameraInput();
 
@@ -126,12 +121,16 @@ namespace GameProject {
         }
 
         private Matrix GetView() {
+            int width = GraphicsDevice.Viewport.Width;
+            int height = GraphicsDevice.Viewport.Height;
+            Vector2 origin = new Vector2(width / 2f, height / 2f);
+
             return
-                Matrix.CreateTranslation(-_origin.X, -_origin.Y, 0f) *
+                Matrix.CreateTranslation(-origin.X, -origin.Y, 0f) *
                 Matrix.CreateTranslation(-_xy.X, -_xy.Y, 0f) *
                 Matrix.CreateRotationZ(_rotation) *
                 Matrix.CreateScale(_scale, _scale, 1f) *
-                Matrix.CreateTranslation(_origin.X, _origin.Y, 0f);
+                Matrix.CreateTranslation(origin.X, origin.Y, 0f);
         }
         private Matrix GetUVTransform(Texture2D t, Vector2 offset, float scale, Viewport v) {
             return
