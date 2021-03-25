@@ -5,8 +5,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace GameProject {
-    public class GameRoot : Game {
-        public GameRoot() {
+    public class Game1 : Game {
+        public Game1() {
             _graphics = new GraphicsDeviceManager(this);
             IsMouseVisible = true;
             Content.RootDirectory = "Content";
@@ -156,16 +156,6 @@ namespace GameProject {
         Texture2D _background;
         Effect _infinite;
 
-        ICondition _quit =
-            new AnyCondition(
-                new KeyboardCondition(Keys.Escape),
-                new GamePadCondition(GamePadButton.Back, 0)
-            );
-        ICondition RotateLeft = new KeyboardCondition(Keys.OemComma);
-        ICondition RotateRight = new KeyboardCondition(Keys.OemPeriod);
-
-        ICondition CameraDrag = new MouseCondition(MouseButton.MiddleButton);
-
         Vector2 _origin;
         Vector2 _xy = new Vector2(0f, 0f);
         float _scale;
@@ -183,5 +173,16 @@ namespace GameProject {
         float _scrollToLogDistance = 0.001f;
         float _minScale = 0.1f;
         float _maxScale = 1f;
+
+        ICondition _quit =
+            new AnyCondition(
+                new KeyboardCondition(Keys.Escape),
+                new GamePadCondition(GamePadButton.Back, 0)
+            );
+
+        ICondition RotateLeft = new KeyboardCondition(Keys.OemComma);
+        ICondition RotateRight = new KeyboardCondition(Keys.OemPeriod);
+
+        ICondition CameraDrag = new MouseCondition(MouseButton.MiddleButton);
     }
 }
