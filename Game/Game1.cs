@@ -8,6 +8,7 @@ namespace GameProject {
     public class Game1 : Game {
         public Game1() {
             _graphics = new GraphicsDeviceManager(this);
+            _graphics.GraphicsProfile = GraphicsProfile.HiDef;
             IsMouseVisible = true;
             Content.RootDirectory = "Content";
             Window.AllowUserResizing = true;
