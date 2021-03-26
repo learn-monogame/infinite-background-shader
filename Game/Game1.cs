@@ -15,6 +15,8 @@ namespace GameProject {
         }
 
         protected override void Initialize() {
+            Window.Title = "Infinite background shader";
+
             base.Initialize();
         }
 
