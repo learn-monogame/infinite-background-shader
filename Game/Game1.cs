@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Apos.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -100,20 +100,20 @@ namespace GameProject {
         /// Poor man's tweening function.
         /// If the result is stored in the value, it will create a nice interpolation over multiple frames.
         /// </summary>
-        /// <param name="value">The value to start from.</param>
+        /// <param name="start">The value to start from.</param>
         /// <param name="target">The value to reach.</param>
         /// <param name="speed">A value between 0f and 1f.</param>
         /// <param name="snapNear">
         /// When the difference between the target and the result is smaller than this value, the target will be returned.
         /// </param>
         /// <returns></returns>
-        private float InterpolateTowardsTarget(float value, float target, float speed, float snapNear) {
-            float result = MathHelper.Lerp(value, target, speed);
+        private float InterpolateTowardsTarget(float start, float target, float speed, float snapNear) {
+            float result = MathHelper.Lerp(start, target, speed);
 
-            if (value < target) {
-                result = MathHelper.Clamp(result, value, target);
+            if (start < target) {
+                result = MathHelper.Clamp(result, start, target);
             } else {
-                result = MathHelper.Clamp(result, target, value);
+                result = MathHelper.Clamp(result, target, start);
             }
 
             if (MathF.Abs(target - result) < snapNear) {
